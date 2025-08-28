@@ -18,13 +18,12 @@ const Sidebar = ({ sidebar, setSidebar }) => {
     const { isLoaded, user } = useUser();
     const { signOut, openUserProfile } = useClerk();
 
-    console.log(user);
     if (!isLoaded) return (
         <div className="w-60 h-screen flex justify-center items-center">
             <div className="w-6 h-6 border-4 border-t-transparent border-gray-500 rounded-full animate-spin"></div>
         </div>
     );
-
+console.log("user:::", user)
     return (
         <div className={`w-60 bg-white border-r border-gray-200 flex flex-col justify-between items-center
   sm:static sm:translate-x-0 max-sm:absolute top-14 bottom-0 transition-all duration-300 ease-in-out
@@ -33,7 +32,7 @@ const Sidebar = ({ sidebar, setSidebar }) => {
 
             <div className="my-7 w-full">
                 <img src={user.imageUrl} alt="user-image" className="w-12 rounded-full mx-auto" />
-                <h1 className="mt-1 text-center">{user?.username ? ` ${user.username}` : "Guest-Name"}</h1>
+                <h1 className="mt-1 text-center">{user?.username ? ` ${user.username}` : "Guest"}</h1>
                 <div className="px-6 mt-5 text-sm text-gray-600 font-medium">
                     {navItems.map(({ key, to, label, Icon }) => (
                         <NavLink
@@ -57,7 +56,7 @@ const Sidebar = ({ sidebar, setSidebar }) => {
                 <div onClick={openUserProfile} className="flex gap-2 items-center cursor-pointer">
                     <img src={user.imageUrl} className="w-8 rounded-full" alt="User - Image" />
                     <div>
-                        <p className="font-medium text-sm">{user?.fullName ? ` ${user.fullName}` : "Guest-Name"}</p>
+                        <p className="font-medium text-sm">{user?.username ? ` ${user.username}` : "Guest"}</p>
                         <p className="text-xs text-gray-500">
                             <Protect plan='premium' fallback="Free ">Premium </Protect>
                             Plan
